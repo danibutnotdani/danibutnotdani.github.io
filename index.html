@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daniel Rodríguez</title>
+<meta name="description" content="Apps para Apple y Android, y configuraciones de OpenCore, hechas por Daniel Rodríguez en México.">
+<style>
+  /* Papel cálido, tinta y un solo acento terracota: página de texto, sin fuentes externas. */
+  :root {
+    --fondo: #f6f2ea; --tinta: #1d1b18; --suave: #6b655c; --linea: #ddd6c9; --acento: #a8481f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --fondo: #171614; --tinta: #ece7dd; --suave: #a39c90; --linea: #34312c; --acento: #e58a5c; }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--fondo); color: var(--tinta);
+    font: 1.0625rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 42rem; margin: 0 auto; padding: 4.5rem 1.25rem 3rem; }
+  h1, h2 { font-family: ui-serif, "New York", "Iowan Old Style", Georgia, serif; font-weight: 600; line-height: 1.15; }
+  h1 { font-size: clamp(2.4rem, 8vw, 3.6rem); margin: 0 0 1.25rem; letter-spacing: -0.01em; }
+  h2 { font-size: 1.5rem; margin: 4rem 0 0.25rem; }
+  p { margin: 0 0 1rem; }
+  .intro { font-size: 1.2rem; max-width: 34rem; }
+  .nota { color: var(--suave); margin-bottom: 1.5rem; }
+  a { color: inherit; text-decoration-color: var(--acento); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  a:hover { color: var(--acento); }
+  a:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; border-radius: 2px; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { padding: 1.1rem 0; border-top: 1px solid var(--linea); }
+  li:last-child { border-bottom: 1px solid var(--linea); }
+  .nombre { font-weight: 600; }
+  .pila { color: var(--suave); font-size: 0.9375rem; white-space: nowrap; }
+  .fila { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 1rem; }
+  li p { margin: 0.3rem 0 0; color: var(--suave); }
+  /* El proyecto principal lleva más aire y texto de tinta completa. */
+  .principal { padding: 1.6rem 0; }
+  .principal .nombre { font-size: 1.25rem; }
+  .principal p { color: var(--tinta); max-width: 36rem; }
+  footer { max-width: 42rem; margin: 0 auto; padding: 0 1.25rem 4rem; color: var(--suave); font-size: 0.9375rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Daniel Rodríguez</h1>
+  <p class="intro">Hago apps para resolver cosas mías, y de paso las publico. Trabajo sobre todo en Swift y Kotlin, desde México.</p>
+  <p>El código está en <a href="https://github.com/danibutnotdani">GitHub</a>.</p>
+
+  <h2>Apps</h2>
+  <ul>
+    <li class="principal">
+      <div class="fila">
+        <a class="nombre" href="https://github.com/danibutnotdani/MotionPhotoConverter">Motion a Live</a>
+        <span class="pila">Swift · iPad y Mac</span>
+      </div>
+      <p>Convierte las Motion Photos de un teléfono Samsung en Live Photos de Apple. No recodifica nada: copia la imagen tal cual y solo reescribe el dato que une la foto con su video, así que se conservan el HDR, la fecha y la ubicación.</p>
+    </li>
+  </ul>
+
+  <h2>Hackintosh</h2>
+  <p class="nota">Configuraciones de OpenCore de mis equipos, sin números de serie.</p>
+  <ul>
+    <li>
+      <div class="fila">
+        <a class="nombre" href="https://github.com/danibutnotdani/ThinkPad-T14-Hackintosh">ThinkPad T14 Gen 1</a>
+        <span class="pila">macOS Sequoia · OpenCore 1.0.7</span>
+      </div>
+      <p>Core i7-10610U con pantalla táctil, en arranque dual con Windows.</p>
+    </li>
+    <li>
+      <div class="fila">
+        <a class="nombre" href="https://github.com/danibutnotdani/OptiPlex-7050-Hackintosh">Dell OptiPlex 7050 MT</a>
+        <span class="pila">macOS Sequoia · OpenCore 1.0.4</span>
+      </div>
+      <p>Core i7-7700 con gráficos integrados, junto a Windows y Linux.</p>
+    </li>
+    <li>
+      <div class="fila">
+        <a class="nombre" href="https://github.com/danibutnotdani/HP-Pavilion-14-ce0001la">HP Pavilion 14-ce0001la</a>
+        <span class="pila">2023</span>
+      </div>
+      <p>EFI de una laptop anterior.</p>
+    </li>
+  </ul>
+
+  <h2>De clase</h2>
+  <ul>
+    <li>
+      <div class="fila">
+        <a class="nombre" href="https://github.com/danibutnotdani/Web2">Web 2</a>
+        <span class="pila">JavaScript · 2025</span>
+      </div>
+      <p>Ejercicios y proyecto de Programación Web 2, FES Aragón.</p>
+    </li>
+    <li>
+      <div class="fila">
+        <a class="nombre" href="https://github.com/danibutnotdani/ProgWebI2557">Programación Web I</a>
+        <span class="pila">HTML · 2025</span>
+      </div>
+      <p>Proyectos del grupo 2557.</p>
+    </li>
+  </ul>
+</main>
+<footer>
+  <p>Hecha a mano en un solo archivo HTML.</p>
+</footer>
+</body>
+</html>
