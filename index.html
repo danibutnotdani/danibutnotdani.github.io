@@ -11,253 +11,142 @@
 <meta property="og:url" content="https://danibutnotdani.github.io/">
 <meta property="og:image" content="https://danibutnotdani.github.io/img/psi.webp">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#123528">
-<link rel="preload" href="fuentes/fraunces.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fuentes/figtree.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  /* Fraunces para los títulos (serifa con carácter) y Figtree para leer; las dos libres y alojadas aquí. */
-  @font-face { font-family: Fraunces; src: url(fuentes/fraunces.woff2) format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
-  @font-face { font-family: Fraunces; src: url(fuentes/fraunces-italica.woff2) format("woff2"); font-weight: 400 700; font-style: italic; font-display: swap; }
-  @font-face { font-family: Figtree; src: url(fuentes/figtree.woff2) format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
-
-  /* Verde bosque sobre crema, con un solo acento lima que vive nada más sobre el verde. */
-  :root {
-    --fondo: #f5f1e6; --papel: #fbf9f2; --tinta: #0e1f18; --suave: #55635b; --linea: #dcd6c6;
-    --bloque: #123528; --sobre: #f5f1e6; --sobre-suave: #a9c2b3; --acento: #d6f25c; --marca: #1b6a49;
-  }
+  /* Gris neutro y la tipografía del sistema: quién soy a la izquierda, el trabajo a la derecha. Sin fuentes externas ni scripts. */
+  :root { --fondo: #f4f4f1; --tinta: #16181d; --suave: #636872; --linea: #dcdcd6; --papel: #fff; }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --fondo: #0a1510; --papel: #101e17; --tinta: #e8efe7; --suave: #93a69a; --linea: #1f3329;
-      --bloque: #123528; --marca: #86dba9;
-    }
+    :root { --fondo: #101114; --tinta: #e7e8ea; --suave: #9095a0; --linea: #26282d; --papel: #17181c; }
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
-  body { margin: 0; background: var(--fondo); color: var(--tinta); font: 1.0625rem/1.6 Figtree, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  .ancho { max-width: 70rem; margin: 0 auto; padding: 0 1.5rem; }
-  h1, h2, h3, .serif { font-family: Fraunces, ui-serif, Georgia, serif; font-weight: 500; line-height: 1.05; margin: 0; font-optical-sizing: auto; }
-  p { margin: 0; }
-  a { color: inherit; text-decoration-color: var(--marca); text-decoration-thickness: 2px; text-underline-offset: 3px; transition: color .15s; }
-  a:hover { color: var(--marca); }
-  a:focus-visible { outline: 2px solid var(--marca); outline-offset: 3px; border-radius: 3px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--fondo); color: var(--tinta); font: 1.03rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  p, h1, h2, h3 { margin: 0; }
   ul { list-style: none; margin: 0; padding: 0; }
+  img { display: block; width: 100%; height: auto; }
+  a { color: inherit; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--tinta); outline-offset: 3px; border-radius: 2px; }
   .saltar { position: absolute; left: -999px; }
-  .saltar:focus { left: 1rem; top: 1rem; background: var(--papel); color: var(--tinta); padding: .5rem .75rem; z-index: 2; }
+  .saltar:focus { left: 1rem; top: 1rem; background: var(--papel); padding: .5rem .75rem; z-index: 1; }
 
-  /* Portada: un bloque verde de borde a borde con el nombre. */
-  .portada { background: var(--bloque); color: var(--sobre); }
-  .portada a { text-decoration: none; }
-  .portada a:hover { color: var(--acento); }
-  .portada a:focus-visible { outline-color: var(--acento); }
-  .barra { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .5rem 1.5rem; padding-top: 1.75rem; padding-bottom: 1.75rem; font-size: .9375rem; }
-  .barra .marca { font-weight: 600; }
-  .barra nav { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; color: var(--sobre-suave); }
-  .entrada { display: grid; gap: 2rem 4rem; padding-top: clamp(3rem, 10vw, 7rem); padding-bottom: clamp(3.5rem, 10vw, 7rem); }
-  .entrada h1 { font-size: clamp(3.4rem, 13vw, 8.5rem); font-weight: 400; letter-spacing: -0.035em; line-height: .92; }
-  .entrada h1 em { font-style: italic; color: var(--acento); }
-  .entrada .intro { font-size: clamp(1.2rem, 2.3vw, 1.5rem); line-height: 1.4; max-width: 28rem; }
-  .entrada .datos { margin-top: 1.5rem; color: var(--sobre-suave); font-size: .9375rem; }
-  @media (min-width: 58rem) { .entrada { grid-template-columns: 1.35fr 1fr; align-items: end; } }
+  .pagina { max-width: 74rem; margin: 0 auto; padding: 0 1.5rem; display: grid; gap: 0 5rem; }
+  header { padding: 4rem 0 1rem; }
+  h1 { font-size: 2.1rem; font-weight: 650; letter-spacing: -0.02em; line-height: 1.1; }
+  .intro { margin-top: 1.1rem; font-size: 1.2rem; line-height: 1.45; max-width: 24rem; }
+  .datos { margin-top: 1.5rem; color: var(--suave); font-size: .95rem; }
+  header nav { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; font-size: .95rem; }
+  header nav a { text-decoration: none; color: var(--suave); }
+  header nav a:hover { color: var(--tinta); text-decoration: underline; }
 
-  section { padding-top: clamp(3.5rem, 8vw, 6rem); padding-bottom: clamp(3.5rem, 8vw, 6rem); }
-  section + section { border-top: 1px solid var(--linea); }
-  .titulo { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .25rem 1.5rem; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
-  .titulo h2 { font-size: clamp(2rem, 5vw, 3.25rem); letter-spacing: -0.02em; }
-  .titulo p { color: var(--suave); max-width: 28rem; }
-  .pila { color: var(--suave); font-size: .875rem; letter-spacing: .01em; }
-
-  /* Capturas reales: van sobre un paspartú para que respiren. */
-  .marco { display: block; text-decoration: none; padding: clamp(.75rem, 2.5vw, 1.5rem); background: var(--papel); border: 1px solid var(--linea); border-radius: 18px; transition: border-color .2s; }
-  .marco img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid var(--linea); transition: transform .3s ease; }
-  a.marco:hover { border-color: var(--marca); }
-  a.marco:hover img { transform: translateY(-4px); }
-
-  .principal { display: grid; gap: 2rem 4rem; align-items: center; }
-  .principal .marco { background: var(--bloque); border-color: var(--bloque); }
-  .principal .marco img { border-color: transparent; }
-  .principal h3 { font-size: clamp(2.75rem, 7vw, 4.5rem); letter-spacing: -0.03em; margin: .6rem 0 1.1rem; }
-  .principal .texto p { max-width: 32rem; }
-  .principal .texto p + p { margin-top: .9rem; }
-  @media (min-width: 58rem) { .principal { grid-template-columns: 1.2fr 1fr; } }
-  .enlace { display: inline-block; margin-top: 1.4rem; font-weight: 600; color: var(--marca); }
-
-  /* Encore cuelga de PSI: una nota al margen, no otra tarjeta. */
-  .nota-proyecto { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--linea); max-width: 32rem; }
-  .nota-proyecto h4 { margin: 0 0 .3rem; font-size: 1.0625rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .25rem 1rem; }
-  .nota-proyecto h4 .pila { font-weight: 400; }
-  .nota-proyecto p { color: var(--suave); font-size: .9375rem; }
-
-  .par { display: grid; gap: 3rem 4rem; margin-top: clamp(3.5rem, 8vw, 6rem); }
-  @media (min-width: 46rem) { .par { grid-template-columns: 1fr 1fr; } }
-  .par h3 { font-size: clamp(1.75rem, 3.5vw, 2.25rem); letter-spacing: -0.015em; margin: 1.4rem 0 .2rem; }
-  .par h3 a { text-decoration: none; }
-  .par p { margin-top: .6rem; max-width: 30rem; }
-  .par p:not(.pila) { color: var(--suave); }
-  /* TicketNova no tiene cartelera hoy: va con una frase, sin captura vacía. */
-  .frase { display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 16 / 10; padding: clamp(1rem, 3vw, 1.75rem); border-radius: 8px; background: var(--bloque); color: var(--acento); font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1.1; font-style: italic; }
-
-  .app { display: grid; gap: 1.25rem 4rem; }
-  .app h3 { font-size: clamp(2.25rem, 5.5vw, 3.5rem); letter-spacing: -0.025em; margin-top: .5rem; }
-  .app h3 a { text-decoration: none; }
-  .app .texto { max-width: 36rem; font-size: 1.125rem; }
-  @media (min-width: 58rem) { .app { grid-template-columns: 1fr 1.25fr; align-items: end; } }
-
-  .dos { display: grid; gap: 3.5rem 4rem; }
-  @media (min-width: 58rem) { .dos { grid-template-columns: 1fr 1fr; } }
-  .dos h2 { font-size: 1.75rem; letter-spacing: -0.01em; margin-bottom: .4rem; }
-  .dos .nota { color: var(--suave); margin-bottom: 1.25rem; font-size: .9375rem; }
-  .lista li { padding: 1rem 0; border-top: 1px solid var(--linea); }
+  main { padding: 2rem 0 3rem; }
+  h2 { font-size: .85rem; font-weight: 600; color: var(--suave); margin: 0 0 1rem; scroll-margin-top: 2rem; }
+  section + section { margin-top: 4rem; }
+  .obra { display: grid; gap: .6rem; padding-bottom: 3rem; margin-bottom: 3rem; border-bottom: 1px solid var(--linea); }
+  .obra:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+  .captura { margin-bottom: .9rem; border: 1px solid var(--linea); border-radius: 6px; overflow: hidden; background: var(--papel); }
+  .captura img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; transition: opacity .15s; }
+  a.captura:hover img { opacity: .9; }
+  .cab { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .2rem 1rem; }
+  h3 { font-size: 1.45rem; font-weight: 650; letter-spacing: -0.015em; }
+  h3 a { text-decoration: none; }
+  h3 a:hover { text-decoration: underline; }
+  .pila, .dom { font-size: .875rem; color: var(--suave); }
+  .dom:hover { color: var(--tinta); }
+  .obra p.texto { max-width: 36rem; }
+  .lista li { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .1rem 1rem; padding: .7rem 0; border-top: 1px solid var(--linea); }
   .lista li:last-child { border-bottom: 1px solid var(--linea); }
-  .fila { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .15rem 1rem; }
-  .nombre { font-weight: 600; text-decoration: none; }
-  .lista p { margin-top: .2rem; color: var(--suave); font-size: .9375rem; }
+  .lista span { font-size: .875rem; color: var(--suave); }
+  footer { grid-column: 1 / -1; padding: 1rem 0 3rem; font-size: .875rem; color: var(--suave); }
 
-  footer { background: var(--bloque); color: var(--sobre-suave); padding: clamp(3rem, 8vw, 5rem) 0; font-size: .9375rem; }
-  footer .ancho { display: grid; gap: 2rem; }
-  footer .serif { color: var(--sobre); font-size: clamp(1.75rem, 5vw, 3rem); letter-spacing: -0.02em; font-weight: 400; max-width: 34rem; }
-  footer .serif a { color: var(--acento); text-decoration: none; font-style: italic; }
-  footer .serif a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; color: var(--acento); }
-  footer a:focus-visible { outline-color: var(--acento); }
+  @media (min-width: 60rem) {
+    .pagina { grid-template-columns: 22rem 1fr; padding: 0 1.75rem; }
+    header { position: sticky; top: 0; align-self: start; padding-top: 6rem; }
+    main { padding-top: 6rem; }
+  }
 </style>
 </head>
 <body>
 <a class="saltar" href="#trabajo">Saltar al contenido</a>
-
-<header class="portada" id="top">
-  <div class="ancho barra">
-    <a class="marca" href="#top">Daniel Rodríguez</a>
+<div class="pagina">
+  <header>
+    <h1>Daniel Rodríguez</h1>
+    <p class="intro">Construyo plataformas web para instituciones y, por mi cuenta, apps para resolver cosas mías.</p>
+    <p class="datos">TypeScript, Swift y Kotlin · México</p>
     <nav aria-label="Secciones">
-      <a href="#trabajo">Plataformas</a>
-      <a href="#apps">Apps</a>
-      <a href="#mas">Más</a>
+      <a href="#trabajo">Trabajo</a>
+      <a href="#tambien">También</a>
       <a href="https://github.com/danibutnotdani">GitHub</a>
     </nav>
-  </div>
-  <div class="ancho entrada">
-    <h1>Daniel <em>Rodríguez</em></h1>
-    <div>
-      <p class="intro">Construyo plataformas web para instituciones y, por mi cuenta, apps para resolver cosas mías.</p>
-      <p class="datos">TypeScript, Swift y Kotlin · México</p>
-    </div>
-  </div>
-</header>
+  </header>
 
-<main>
-  <section id="trabajo">
-    <div class="ancho">
-      <div class="titulo">
-        <h2>Plataformas</h2>
-        <p>Sistemas que están en línea y en uso.</p>
-      </div>
+  <main>
+    <section aria-labelledby="trabajo">
+      <h2 id="trabajo">Trabajo</h2>
 
-      <article class="principal">
-        <a class="marco" href="https://psi.geofisica.unam.mx" aria-label="Abrir PSI">
+      <article class="obra">
+        <a class="captura" href="https://psi.geofisica.unam.mx" aria-label="Abrir PSI">
           <img src="img/psi.webp" width="1600" height="1000" alt="Página de entrada de la Plataforma de Servicios Institucionales del Instituto de Geofísica">
         </a>
-        <div class="texto">
+        <div class="cab">
+          <h3><a href="https://psi.geofisica.unam.mx">PSI</a></h3>
           <p class="pila">Next.js · TypeScript · PostgreSQL</p>
-          <h3>PSI</h3>
-          <p>La Plataforma de Servicios Institucionales del Instituto de Geofísica de la UNAM.</p>
-          <p>Reúne en un solo lugar los trámites y servicios del Instituto, con cuentas, roles por unidad y avisos. Está en producción.</p>
-          <a class="enlace" href="https://psi.geofisica.unam.mx">psi.geofisica.unam.mx</a>
-
-          <div class="nota-proyecto">
-            <h4><span>Encore</span> <span class="pila">AWS Lambda · Bedrock</span></h4>
-            <p>El asistente de PSI: ayuda a encontrar y preparar trámites, y nada se ejecuta hasta que la persona lo confirma. Proyecto de Amazon DevDays Latam, en el tema de agentes con serverless.</p>
-          </div>
         </div>
+        <p class="texto">La Plataforma de Servicios Institucionales del Instituto de Geofísica de la UNAM. Reúne en un solo lugar los trámites y servicios del Instituto, con cuentas, roles por unidad y avisos. Está en producción.</p>
+        <p><a class="dom" href="https://psi.geofisica.unam.mx">psi.geofisica.unam.mx</a></p>
       </article>
 
-      <div class="par">
-        <article>
-          <a class="marco" href="https://www.inacn.com.mx" aria-label="Abrir INACN">
-            <img src="img/inacn.webp" width="1600" height="1000" loading="lazy" alt="Portada del sitio del Instituto Nacional de Artes y Cultura Nocheztli">
-          </a>
+      <article class="obra">
+        <div class="cab">
+          <h3>Encore</h3>
+          <p class="pila">AWS Lambda · Bedrock</p>
+        </div>
+        <p class="texto">El asistente de PSI: ayuda a encontrar y preparar trámites, y nada se ejecuta hasta que la persona lo confirma. Proyecto de Amazon DevDays Latam, en el tema de agentes con serverless.</p>
+      </article>
+
+      <article class="obra">
+        <a class="captura" href="https://www.inacn.com.mx" aria-label="Abrir INACN">
+          <img src="img/inacn.webp" width="1600" height="1000" loading="lazy" alt="Portada del sitio del Instituto Nacional de Artes y Cultura Nocheztli">
+        </a>
+        <div class="cab">
           <h3><a href="https://www.inacn.com.mx">INACN</a></h3>
           <p class="pila">Next.js · TypeScript</p>
-          <p>Sitio y plataforma del Instituto Nacional de Artes y Cultura Nocheztli, en la Ciudad de México: oferta educativa, cartelera, convocatorias, inscripciones y constancias.</p>
-        </article>
-        <article>
-          <a class="marco" href="https://www.ticketnova.com.mx" aria-label="Abrir TicketNova">
-            <div class="frase serif">Boletos para teatro, música y danza.</div>
-          </a>
+        </div>
+        <p class="texto">Sitio y plataforma del Instituto Nacional de Artes y Cultura Nocheztli, en la Ciudad de México: oferta educativa, cartelera, convocatorias, inscripciones y constancias.</p>
+        <p><a class="dom" href="https://www.inacn.com.mx">inacn.com.mx</a></p>
+      </article>
+
+      <article class="obra">
+        <div class="cab">
           <h3><a href="https://www.ticketnova.com.mx">TicketNova</a></h3>
           <p class="pila">Next.js · Stripe</p>
-          <p>Venta de boletos para actividades culturales: recintos con asientos numerados, boletos con QR y registro de entrada. Es donde se venden los eventos de INACN.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+        </div>
+        <p class="texto">Venta de boletos para actividades culturales: recintos con asientos numerados, boletos con QR y registro de entrada. Es donde se venden los eventos de INACN.</p>
+        <p><a class="dom" href="https://www.ticketnova.com.mx">ticketnova.com.mx</a></p>
+      </article>
 
-  <section id="apps">
-    <div class="ancho app">
-      <div>
-        <p class="pila">Swift · iPad y Mac</p>
-        <h3><a href="https://github.com/danibutnotdani/MotionPhotoConverter">Motion a Live</a></h3>
-      </div>
-      <p class="texto">Convierte las Motion Photos de un teléfono Samsung en Live Photos de Apple. No recodifica nada: copia la imagen tal cual y solo reescribe el dato que une la foto con su video, así que se conservan el HDR, la fecha y la ubicación.</p>
-    </div>
-  </section>
+      <article class="obra">
+        <div class="cab">
+          <h3><a href="https://github.com/danibutnotdani/MotionPhotoConverter">Motion a Live</a></h3>
+          <p class="pila">Swift · iPad y Mac</p>
+        </div>
+        <p class="texto">Convierte las Motion Photos de un teléfono Samsung en Live Photos de Apple. No recodifica nada: copia la imagen tal cual y solo reescribe el dato que une la foto con su video, así que se conservan el HDR, la fecha y la ubicación.</p>
+        <p><a class="dom" href="https://github.com/danibutnotdani/MotionPhotoConverter">github.com/danibutnotdani/MotionPhotoConverter</a></p>
+      </article>
+    </section>
 
-  <section id="mas">
-    <div class="ancho dos">
-      <div>
-        <h2>Hackintosh</h2>
-        <p class="nota">Configuraciones de OpenCore de mis equipos, sin números de serie.</p>
-        <ul class="lista">
-          <li>
-            <div class="fila">
-              <a class="nombre" href="https://github.com/danibutnotdani/ThinkPad-T14-Hackintosh">ThinkPad T14 Gen 1</a>
-              <span class="pila">macOS Sequoia · OpenCore 1.0.7</span>
-            </div>
-            <p>Core i7-10610U con pantalla táctil, en arranque dual con Windows.</p>
-          </li>
-          <li>
-            <div class="fila">
-              <a class="nombre" href="https://github.com/danibutnotdani/OptiPlex-7050-Hackintosh">Dell OptiPlex 7050 MT</a>
-              <span class="pila">macOS Sequoia · OpenCore 1.0.4</span>
-            </div>
-            <p>Core i7-7700 con gráficos integrados, junto a Windows y Linux.</p>
-          </li>
-          <li>
-            <div class="fila">
-              <a class="nombre" href="https://github.com/danibutnotdani/HP-Pavilion-14-ce0001la">HP Pavilion 14-ce0001la</a>
-              <span class="pila">2023</span>
-            </div>
-            <p>EFI de una laptop anterior.</p>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h2>De clase</h2>
-        <p class="nota">Materias de la FES Aragón, UNAM.</p>
-        <ul class="lista">
-          <li>
-            <div class="fila">
-              <a class="nombre" href="https://github.com/danibutnotdani/Web2">Web 2</a>
-              <span class="pila">JavaScript · 2025</span>
-            </div>
-            <p>Ejercicios y proyecto de Programación Web 2.</p>
-          </li>
-          <li>
-            <div class="fila">
-              <a class="nombre" href="https://github.com/danibutnotdani/ProgWebI2557">Programación Web I</a>
-              <span class="pila">HTML · 2025</span>
-            </div>
-            <p>Proyectos del grupo 2557.</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</main>
+    <section aria-labelledby="tambien">
+      <h2 id="tambien">También</h2>
+      <ul class="lista">
+        <li><a href="https://github.com/danibutnotdani/ThinkPad-T14-Hackintosh">ThinkPad T14 Gen 1</a><span>Hackintosh · macOS Sequoia, OpenCore 1.0.7</span></li>
+        <li><a href="https://github.com/danibutnotdani/OptiPlex-7050-Hackintosh">Dell OptiPlex 7050 MT</a><span>Hackintosh · macOS Sequoia, OpenCore 1.0.4</span></li>
+        <li><a href="https://github.com/danibutnotdani/HP-Pavilion-14-ce0001la">HP Pavilion 14-ce0001la</a><span>Hackintosh · 2023</span></li>
+        <li><a href="https://github.com/danibutnotdani/Web2">Web 2</a><span>FES Aragón · JavaScript, 2025</span></li>
+        <li><a href="https://github.com/danibutnotdani/ProgWebI2557">Programación Web I</a><span>FES Aragón · HTML, 2025</span></li>
+      </ul>
+    </section>
+  </main>
 
-<footer>
-  <div class="ancho">
-    <p class="serif">El código abierto está en <a href="https://github.com/danibutnotdani">GitHub</a>.</p>
-    <p>Hecha a mano, sin frameworks.</p>
-  </div>
-</footer>
+  <footer>Hecha a mano, sin frameworks.</footer>
+</div>
 </body>
 </html>
